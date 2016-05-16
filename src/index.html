@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en-US" class="no-js">
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1,requiresActiveX=true">
+        <!-- /// Favicons ////////  -->
+        <link rel="shortcut icon" href="img/favicon.png" />
+        <title>MMPSG</title>
+        <style type="text/css">
+            img.wp-smiley,
+            img.emoji {
+            display: inline !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: 1em !important;
+            width: 1em !important;
+            margin: 0 .07em !important;
+            vertical-align: -0.1em !important;
+            background: none !important;
+            padding: 0 !important;
+            }
+        </style>
+        <link rel='stylesheet' id='contact-form-7-css'  href='css/style.css?ver=4.4.1' type='text/css' media='all' />
+        <link rel='stylesheet' id='rs-plugin-settings-css'  href='css/settings.css?ver=4.6.93' type='text/css' media='all' />
+        <style id='rs-plugin-settings-inline-css' type='text/css'>
+            .tp-caption a{color:#ff7302;text-shadow:none;-webkit-transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;-o-transition:all 0.2s ease-out;-ms-transition:all 0.2s ease-out}.tp-caption a:hover{color:#ffa902}
+        </style>
+        <link rel='stylesheet' id='plugin-fontawesome-css-css'  href='css/fontawesome/font-awesome.min3428.css?ver=4.5.2' type='text/css' media='all' />
+        <link rel='stylesheet' id='plugin-iconfontcustom-css-css'  href='css/iconfontcustom/icon-font-custom3428.css?ver=4.5.2' type='text/css' media='all' />
+        <link rel='stylesheet' id='googlefonts-Open+sans-css'  href='http://fonts.googleapis.com/css?family=Open+Sans%3A300%2C300italic%2Cregular%2Citalic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic&amp;ver=4.5.2' type='text/css' media='all' />
+        <link rel='stylesheet' id='plugin-bxslider-css-css'  href='js/bxslider/jquery.bxslider3428.css?ver=4.5.2' type='text/css' media='all' />
+        <link rel='stylesheet' id='plugin-magnificpopup-css-css'  href='js/magnificpopup/magnific-popup3428.css?ver=4.5.2' type='text/css' media='all' />
+        <link rel='stylesheet' id='plugin-itplayer-css-css'  href='js/itplayer/YTPlayer3428.css?ver=4.5.2' type='text/css' media='all' />
+        <link rel='stylesheet' id='theme-style-css'  href='css/style.css?ver=4.5.2' type='text/css' media='all' />
+        <style id='theme-style-inline-css' type='text/css'>
+            .ewf-boxed-layout #wrap, 
+            .ewf-boxed-layout #header { max-width:1060px;} 		
+            body { 
+            background-color:#fff;
+            background-repeat:repeat;
+            background-position:center center;
+            background-attachment:scroll;}
+            #footer { 
+            background-color:#bdc3c7;
+            background-image:url('#');
+            background-repeat:no-repeat;
+            background-position:center center;
+            background-attachment:scroll;
+            background-size:cover;}
+            #footer-top { }
+        </style>
+        <script type='text/javascript' src='js/jquery/jquerycad0.js?ver=1.12.3'></script>
+        <script type='text/javascript' src='js/jquery/jquery-migrate.min2fca.js?ver=1.4.0'></script>
+        <script type='text/javascript' src='js/jquery.themepunch.tools.min9cbc.js?ver=4.6.93'></script>
+        <script type='text/javascript' src='js/jquery.themepunch.revolution.min9cbc.js?ver=4.6.93'></script>
+        <link rel="EditURI" type="application/rsd+xml" title="RSD" href="php/xmlrpc.php?rsd" />
+        <link rel="canonical" href="index.html" />
+        <link rel='shortlink' href='index.html' />
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+            // CUSTOM AJAX CONTENT LOADING FUNCTION
+            var ajaxRevslider = function(obj) {
+            
+            // obj.type : Post Type
+            // obj.id : ID of Content to Load
+            // obj.aspectratio : The Aspect Ratio of the Container / Media
+            // obj.selector : The Container Selector where the Content of Ajax will be injected. It is done via the Essential Grid on Return of Content
+            
+            var content = "";
+            
+            data = {};
+            
+            data.action = 'revslider_ajax_call_front';
+            data.client_action = 'get_slider_html';
+            data.token = '33bba4a028';
+            data.type = obj.type;
+            data.id = obj.id;
+            data.aspectratio = obj.aspectratio;
+            
+            // SYNC AJAX REQUEST
+            jQuery.ajax({
+            type:"post",
+            url:"php/admin-ajax.php",
+            dataType: 'json',
+            data:data,
+            async:false,
+            success: function(ret, textStatus, XMLHttpRequest) {
+            if(ret.success == true)
+            content = ret.data;								
+            },
+            error: function(e) {
+            console.log(e);
+            }
+            });
+            
+            // FIRST RETURN THE CONTENT WHEN IT IS LOADED !!
+            return content;						 
+            };
+            
+            // CUSTOM AJAX FUNCTION TO REMOVE THE SLIDER
+            var ajaxRemoveRevslider = function(obj) {
+            return jQuery(obj.selector+" .rev_slider").revkill();
+            };
+            
+            // EXTEND THE AJAX CONTENT LOADING TYPES WITH TYPE AND FUNCTION
+            var extendessential = setInterval(function() {
+            if (jQuery.fn.tpessential != undefined) {
+            clearInterval(extendessential);
+            if(typeof(jQuery.fn.tpessential.defaults) !== 'undefined') {
+            jQuery.fn.tpessential.defaults.ajaxTypes.push({type:"revslider",func:ajaxRevslider,killfunc:ajaxRemoveRevslider,openAnimationSpeed:0.3});   
+            // type:  Name of the Post to load via Ajax into the Essential Grid Ajax Container
+            // func: the Function Name which is Called once the Item with the Post Type has been clicked
+            // killfunc: function to kill in case the Ajax Window going to be removed (before Remove function !
+            // openAnimationSpeed: how quick the Ajax Content window should be animated (default is 0.3)
+            }
+            }
+            },30);
+            });
+        </script>
+        <meta name="generator" content=""/>
+        <style type="text/css" data-type="vc-custom-css">#content{padding-top:0;}</style>
+    </head>
+    <body class="home page page-id-5 page-template-default ewf-sticky-header wpb-js-composer js-comp-ver-1.2.4 vc_responsive">
+        <div id="wrap">
+            <div id="header-top">
+                <!-- /// HEADER TOP  //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+                <div class="ewf-row">
+                    <div class="ewf-span6" id="header-top-widget-area-1">
+                        <div id="text-6" class="widget widget_text">
+                            <div class="textwidget">&nbsp;</div>
+                        </div>
+                    </div>
+                    <!-- end .span6 -->
+                    <div class="ewf-span6" id="header-top-widget-area-2">
+                        <div id="ewf_widget_contact_info-3" class="widget ewf_widget_contact_info">
+                            <ul>
+                                <li>(+351) XX XXX XX XX</li>
+                                <li><a href="mailto:">info@mmpsg-consulting.pt</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- end .span6 -->
+                </div>
+                <!-- end .row -->
+                <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+            </div>
+            <!-- end #header-top -->
+            <div id="header" 
+                >
+                <!-- /// HEADER  //////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+                <div class="ewf-row">
+                    <div class="ewf-span3">
+                        <!-- // Logo // -->
+                        <a href="index.html" id="logo">
+                        <img class="responsive-img" src="img/logo.png" alt="">
+                        </a><!-- end #logo -->
+                    </div>
+                    <!-- end .span4 -->
+                    <div class="ewf-span9">
+                        <a id="mobile-menu-trigger" href="#">
+                        <i class="fa fa-bars"></i>
+                        </a>
+                        <!-- // Menu // -->
+                        <ul id="menu" class="sf-menu fixed">
+                            <li  class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-5 current_page_item current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children dropdown menu-item-68 current">
+                                <a title="Home" href="index.html" rel="page-5" ><span>Home</span></a>
+                            </li>
+                            <li  class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown menu-item-69">
+                                <a title="Quem somos" href="#" rel="page-69" ><span>Quem somos</span></a>
+                                <ul class='sub-menu'>
+                                    <li  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-49">
+                                        <a title="Empresa" href="about-us/index.html" rel="page-23" ><span>Empresa</span></a>	
+                                    </li>
+                                    <li  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-48">
+                                        <a title="Equipa" href="about-me/index.html" rel="page-25" ><span>Equipa</span></a>	
+                                    </li>
+                                </ul>
+                            </li>
+                            <li  class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown menu-item-69">
+                                <a title="Parcerias" href="#" rel="page-69" ><span>Parcerias</span></a>
+                                <ul class='sub-menu'>
+                                    <li  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-49">
+                                        <a title="Parceiros" href="#" rel="page-23" ><span>Parceiros</span></a>	
+                                    </li>
+                                    <li  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-48">
+                                        <a title="Clientes" href="#" rel="page-25" ><span>Clientes</span></a>	
+                                    </li>
+                                    <li  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-48">
+                                        <a title="Projectos" href="#" rel="page-25" ><span>Projectos</span></a>	
+                                    </li>
+                                </ul>
+                            </li>
+                            <li  class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-683 mega-menu">
+                                <a title="Servi&ccedil;os" href="#" rel="page-683" ><span>Servi&ccedil;os</span></a>
+                                <div class='sf-mega sf-mega-cols-3'>
+                                    <div  class="sf-mega-section" >
+                                        <ul class='sub-menu'>
+                                            <li  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-543">
+                                                <a title="Private" href="#" rel="page-267" >
+                                                	<span>
+                                                		
+                                                		<i class="ifc-group">
+                                                			
+                                                		</i>
+
+                                                		Private
+
+                                                	</span>
+                                                </a>		
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div  class="sf-mega-section" >
+                                        <ul class='sub-menu'>                                            
+                                            <li  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-544">
+                                                <a title="Corporate" href="#" rel="page-261" >
+                                                	<span>
+
+                                                		<i class="ifc-business">
+                                                			
+                                                		</i>
+
+                                                		Corporate
+
+                                                	</span>
+                                                </a>		
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div  class="sf-mega-section" >
+                                        <ul class='sub-menu'>
+                                            <li  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-545">
+                                                <a title="Avia&ccedil;&atilde;o" href="#" rel="page-257" >
+                                                	<span>
+
+                                                		<i class="ifc-airplane">
+                                                			
+                                                		</i>
+
+                                                		Avia&ccedil;&atilde;o
+                                                	
+                                                	</span>
+                                                </a>		
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50">
+                                <a title="Contactos" href="#" rel="page-7" ><span>Contactos</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- end .span8 -->
+                </div>
+                <!-- end .row -->		
+                <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+            </div>
+            <!-- end #header -->
+            <div id="content">
+                <!-- /// CONTENT  //////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+                <div class="ewf-full-width-section nospacing">
+                    <div class="ewf-row">
+                        <div class="ewf-span12">
+                            <div class="ewf-wrapper">
+                                <div class="wpb_revslider_element wpb_content_element">
+                                    <div id="rev_slider_1_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" style="margin:0px auto;background-color:#E9E9E9;padding:0px;margin-top:0px;margin-bottom:40px;max-height:600px;">
+                                        <!-- START REVOLUTION SLIDER 4.6.93 fullwidth mode -->
+                                        <div id="rev_slider_1_1" class="rev_slider fullwidthabanner" style="display:none;max-height:600px;height:600px;">
+                                            <ul>
+                                                <!-- SLIDE  -->
+                                                <li data-transition="fade" data-slotamount="7" data-masterspeed="700"  data-saveperformance="off" >
+                                                    <!-- MAIN IMAGE -->
+                                                    <img src="#"  alt="1920x630-1"  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                                                    <!-- LAYERS -->
+                                                    <!-- LAYER NR. 1 -->
+                                                    <div class="tp-caption title sft tp-resizeme" 
+                                                        data-x="10" 
+                                                        data-y="225"  
+                                                        data-speed="700" 
+                                                        data-start="1000" 
+                                                        data-easing="Power3.easeInOut" 
+                                                        data-splitin="none" 
+                                                        data-splitout="none" 
+                                                        data-elementdelay="0.1" 
+                                                        data-endelementdelay="0.1" 
+                                                        data-endspeed="700" 
+                                                        style="z-index: 5; max-width: auto; max-height: auto; white-space: nowrap;">CalliTech </div>
+                                                    <!-- LAYER NR. 2 -->
+                                                    <div class="tp-caption sub-title sfl tp-resizeme" 
+                                                        data-x="10" 
+                                                        data-y="290"  
+                                                        data-speed="700" 
+                                                        data-start="1500" 
+                                                        data-easing="Power3.easeInOut" 
+                                                        data-splitin="none" 
+                                                        data-splitout="none" 
+                                                        data-elementdelay="0.1" 
+                                                        data-endelementdelay="0.1" 
+                                                        data-endspeed="700" 
+                                                        style="z-index: 6; max-width: auto; max-height: auto; white-space: nowrap;">AAA
+                                                        <br> AAAA &amp; 
+                                                        <br> business websites. 
+                                                    </div>
+                                                    <!-- LAYER NR. 3 -->
+                                                    <div class="tp-caption text sfb tp-resizeme" 
+                                                        data-x="10" 
+                                                        data-y="420"  
+                                                        data-speed="700" 
+                                                        data-start="2000" 
+                                                        data-easing="Power3.easeInOut" 
+                                                        data-splitin="none" 
+                                                        data-splitout="none" 
+                                                        data-elementdelay="0.1" 
+                                                        data-endelementdelay="0.1" 
+                                                        data-endspeed="700" 
+                                                        style="z-index: 7; max-width: auto; max-height: auto; white-space: nowrap;"><a class="btn" href="#">Find out more</a> </div>
+                                                    <!-- LAYER NR. 4 -->
+                                                    <div class="tp-caption tp-fade" 
+                                                        data-x="330" 
+                                                        data-y="0"  
+                                                        data-speed="700" 
+                                                        data-start="600" 
+                                                        data-easing="Power3.easeInOut" 
+                                                        data-elementdelay="0.1" 
+                                                        data-endelementdelay="0.1" 
+                                                        data-endspeed="700" 
+                                                        style="z-index: 8;"><img src="#" alt=""> </div>
+                                                    <!-- LAYER NR. 5 -->
+                                                    <div class="tp-caption tp-fade" 
+                                                        data-x="690" 
+                                                        data-y="170"  
+                                                        data-speed="700" 
+                                                        data-start="2200" 
+                                                        data-easing="Power3.easeInOut" 
+                                                        data-elementdelay="0.1" 
+                                                        data-endelementdelay="0.1" 
+                                                        data-endspeed="700" 
+                                                        style="z-index: 9;"><img src="#" alt=""> </div>
+                                                    <!-- LAYER NR. 6 -->
+                                                    <div class="tp-caption tp-fade" 
+                                                        data-x="770" 
+                                                        data-y="250"  
+                                                        data-speed="700" 
+                                                        data-start="2500" 
+                                                        data-easing="Power3.easeInOut" 
+                                                        data-elementdelay="0.1" 
+                                                        data-endelementdelay="0.1" 
+                                                        data-endspeed="700" 
+                                                        style="z-index: 10;"><img src="#" alt=""> </div>
+                                                    <!-- LAYER NR. 7 -->
+                                                    <div class="tp-caption tp-fade" 
+                                                        data-x="690" 
+                                                        data-y="330"  
+                                                        data-speed="700" 
+                                                        data-start="2800" 
+                                                        data-easing="Power3.easeInOut" 
+                                                        data-elementdelay="0.1" 
+                                                        data-endelementdelay="0.1" 
+                                                        data-endspeed="700" 
+                                                        style="z-index: 11;"><img src="#" alt=""> </div>
+                                                </li>
+                                                <!-- SLIDE  -->
+                                                <li data-transition="fade" data-slotamount="7" data-masterspeed="700"  data-saveperformance="off" >
+                                                    <!-- MAIN IMAGE -->
+                                                    <img src="#"  alt="1920x630-2"  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                                                    <!-- LAYERS -->
+                                                    <!-- LAYER NR. 1 -->
+                                                    <div class="tp-caption title sft tp-resizeme" 
+                                                        data-x="180" 
+                                                        data-y="110"  
+                                                        data-speed="700" 
+                                                        data-start="1000" 
+                                                        data-easing="Power3.easeInOut" 
+                                                        data-splitin="none" 
+                                                        data-splitout="none" 
+                                                        data-elementdelay="0.1" 
+                                                        data-endelementdelay="0.1" 
+                                                        data-endspeed="700" 
+                                                        style="z-index: 5; max-width: auto; max-height: auto; white-space: nowrap;">AAA. </div>
+                                                    <!-- LAYER NR. 2 -->
+                                                    <div class="tp-caption sub-title text-center sfl tp-resizeme" 
+                                                        data-x="60" 
+                                                        data-y="170"  
+                                                        data-speed="700" 
+                                                        data-start="1500" 
+                                                        data-easing="Power3.easeInOut" 
+                                                        data-splitin="none" 
+                                                        data-splitout="none" 
+                                                        data-elementdelay="0.1" 
+                                                        data-endelementdelay="0.1" 
+                                                        data-endspeed="700" 
+                                                        style="z-index: 6; max-width: auto; max-height: auto; white-space: nowrap;">CalliTech: <br>
+                                                        AAAAA  
+                                                    </div>
+                                                    <!-- LAYER NR. 3 -->
+                                                    <div class="tp-caption sfb" 
+                                                        data-x="0" 
+                                                        data-y="415"  
+                                                        data-speed="700" 
+                                                        data-start="2000" 
+                                                        data-easing="Power3.easeInOut" 
+                                                        data-elementdelay="0.1" 
+                                                        data-endelementdelay="0.1" 
+                                                        data-endspeed="700" 
+                                                        style="z-index: 7;"><img src="#" alt=""> </div>
+                                                    <!-- LAYER NR. 4 -->
+                                                    <div class="tp-caption sfb" 
+                                                        data-x="468" 
+                                                        data-y="415"  
+                                                        data-speed="700" 
+                                                        data-start="2300" 
+                                                        data-easing="Power3.easeInOut" 
+                                                        data-elementdelay="0.1" 
+                                                        data-endelementdelay="0.1" 
+                                                        data-endspeed="700" 
+                                                        style="z-index: 8;"><img src="#" alt=""> </div>
+                                                    <!-- LAYER NR. 5 -->
+                                                    <div class="tp-caption sfb" 
+                                                        data-x="193" 
+                                                        data-y="345"  
+                                                        data-speed="700" 
+                                                        data-start="2600" 
+                                                        data-easing="Power3.easeInOut" 
+                                                        data-elementdelay="0.1" 
+                                                        data-endelementdelay="0.1" 
+                                                        data-endspeed="700" 
+                                                        style="z-index: 9;"><img src="#" alt=""> </div>
+                                                    <!-- LAYER NR. 6 -->
+                                                    <div class="tp-caption sfb" 
+                                                        data-x="375" 
+                                                        data-y="270"  
+                                                        data-speed="700" 
+                                                        data-start="2900" 
+                                                        data-easing="Power3.easeInOut" 
+                                                        data-elementdelay="0.1" 
+                                                        data-endelementdelay="0.1" 
+                                                        data-endspeed="700" 
+                                                        style="z-index: 10;"><img src="#" alt=""> </div>
+                                                    <!-- LAYER NR. 7 -->
+                                                    <div class="tp-caption sfb" 
+                                                        data-x="280" 
+                                                        data-y="360"  
+                                                        data-speed="700" 
+                                                        data-start="3200" 
+                                                        data-easing="Power3.easeInOut" 
+                                                        data-elementdelay="0.1" 
+                                                        data-endelementdelay="0.1" 
+                                                        data-endspeed="700" 
+                                                        style="z-index: 11;"><img src="#" alt=""> </div>
+                                                    <!-- LAYER NR. 8 -->
+                                                    <div class="tp-caption sfb" 
+                                                        data-x="470" 
+                                                        data-y="360"  
+                                                        data-speed="700" 
+                                                        data-start="3500" 
+                                                        data-easing="Power3.easeInOut" 
+                                                        data-elementdelay="0.1" 
+                                                        data-endelementdelay="0.1" 
+                                                        data-endspeed="700" 
+                                                        style="z-index: 12;"><img src="#" alt=""> </div>
+                                                </li>
+                                                <!-- SLIDE  -->
+                                                <li data-transition="fade" data-slotamount="7" data-masterspeed="700"  data-saveperformance="off" >
+                                                    <!-- MAIN IMAGE -->
+                                                    <img src="#"  alt="1920x630-3"  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                                                    <!-- LAYERS -->
+                                                    <!-- LAYER NR. 1 -->
+                                                    <div class="tp-caption title-2 sft tp-resizeme" 
+                                                        data-x="10" 
+                                                        data-y="230"  
+                                                        data-speed="700" 
+                                                        data-start="1000" 
+                                                        data-easing="Power3.easeInOut" 
+                                                        data-splitin="none" 
+                                                        data-splitout="none" 
+                                                        data-elementdelay="0.1" 
+                                                        data-endelementdelay="0.1" 
+                                                        data-endspeed="700" 
+                                                        style="z-index: 5; max-width: auto; max-height: auto; white-space: nowrap;">AAAAa </div>
+                                                    <!-- LAYER NR. 2 -->
+                                                    <div class="tp-caption title-2 sft tp-resizeme" 
+                                                        data-x="10" 
+                                                        data-y="280"  
+                                                        data-speed="700" 
+                                                        data-start="1300" 
+                                                        data-easing="Power3.easeInOut" 
+                                                        data-splitin="none" 
+                                                        data-splitout="none" 
+                                                        data-elementdelay="0.1" 
+                                                        data-endelementdelay="0.1" 
+                                                        data-endspeed="700" 
+                                                        style="z-index: 6; max-width: auto; max-height: auto; white-space: nowrap;">AAAAA </div>
+                                                    <!-- LAYER NR. 3 -->
+                                                    <div class="tp-caption title-2 sft tp-resizeme" 
+                                                        data-x="10" 
+                                                        data-y="330"  
+                                                        data-speed="700" 
+                                                        data-start="1600" 
+                                                        data-easing="Power3.easeInOut" 
+                                                        data-splitin="none" 
+                                                        data-splitout="none" 
+                                                        data-elementdelay="0.1" 
+                                                        data-endelementdelay="0.1" 
+                                                        data-endspeed="700" 
+                                                        style="z-index: 7; max-width: auto; max-height: auto; white-space: nowrap;">AAAAA </div>
+                                                    <!-- LAYER NR. 4 -->
+                                                    <div class="tp-caption title-2 sft tp-resizeme" 
+                                                        data-x="10" 
+                                                        data-y="380"  
+                                                        data-speed="700" 
+                                                        data-start="1900" 
+                                                        data-easing="Power3.easeInOut" 
+                                                        data-splitin="none" 
+                                                        data-splitout="none" 
+                                                        data-elementdelay="0.1" 
+                                                        data-endelementdelay="0.1" 
+                                                        data-endspeed="700" 
+                                                        style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;"> AAAAA </div>
+                                                    <!-- LAYER NR. 5 -->
+                                                    <div class="tp-caption title-2 sft tp-resizeme" 
+                                                        data-x="10" 
+                                                        data-y="440"  
+                                                        data-speed="700" 
+                                                        data-start="2200" 
+                                                        data-easing="Power3.easeInOut" 
+                                                        data-splitin="none" 
+                                                        data-splitout="none" 
+                                                        data-elementdelay="0.1" 
+                                                        data-endelementdelay="0.1" 
+                                                        data-endspeed="700" 
+                                                        style="z-index: 9; max-width: auto; max-height: auto; white-space: nowrap;">AAAAAA </div>
+                                                    <!-- LAYER NR. 6 -->
+                                                    <div class="tp-caption text sfb tp-resizeme" 
+                                                        data-x="10" 
+                                                        data-y="520"  
+                                                        data-speed="700" 
+                                                        data-start="4000" 
+                                                        data-easing="Power3.easeInOut" 
+                                                        data-splitin="none" 
+                                                        data-splitout="none" 
+                                                        data-elementdelay="0.1" 
+                                                        data-endelementdelay="0.1" 
+                                                        data-endspeed="700" 
+                                                        style="z-index: 10; max-width: auto; max-height: auto; white-space: nowrap;"><a class="btn" href="#">AAAAA</a>  </div>
+                                                    <!-- LAYER NR. 7 -->
+                                                    <div class="tp-caption sfb" 
+                                                        data-x="385" 
+                                                        data-y="170"  
+                                                        data-speed="700" 
+                                                        data-start="700" 
+                                                        data-easing="Power3.easeInOut" 
+                                                        data-elementdelay="0.1" 
+                                                        data-endelementdelay="0.1" 
+                                                        data-endspeed="700" 
+                                                        style="z-index: 11;"><img src="#" alt=""> </div>
+                                                    <!-- LAYER NR. 8 -->
+                                                    <div class="tp-caption tp-fade" 
+                                                        data-x="415" 
+                                                        data-y="305"  
+                                                        data-speed="700" 
+                                                        data-start="2500" 
+                                                        data-easing="Power3.easeInOut" 
+                                                        data-elementdelay="0.1" 
+                                                        data-endelementdelay="0.1" 
+                                                        data-endspeed="700" 
+                                                        style="z-index: 12;"><img src="#" alt=""> </div>
+                                                    <!-- LAYER NR. 9 -->
+                                                    <div class="tp-caption tp-fade" 
+                                                        data-x="495" 
+                                                        data-y="385"  
+                                                        data-speed="700" 
+                                                        data-start="2800" 
+                                                        data-easing="Power3.easeInOut" 
+                                                        data-elementdelay="0.1" 
+                                                        data-endelementdelay="0.1" 
+                                                        data-endspeed="700" 
+                                                        style="z-index: 13;"><img src="#" alt=""> </div>
+                                                    <!-- LAYER NR. 10 -->
+                                                    <div class="tp-caption tp-fade" 
+                                                        data-x="575" 
+                                                        data-y="305"  
+                                                        data-speed="700" 
+                                                        data-start="3100" 
+                                                        data-easing="Power3.easeInOut" 
+                                                        data-elementdelay="0.1" 
+                                                        data-endelementdelay="0.1" 
+                                                        data-endspeed="700" 
+                                                        style="z-index: 14;"><img src="#" alt=""> </div>
+                                                    <!-- LAYER NR. 11 -->
+                                                    <div class="tp-caption tp-fade" 
+                                                        data-x="655" 
+                                                        data-y="385"  
+                                                        data-speed="700" 
+                                                        data-start="3400" 
+                                                        data-easing="Power3.easeInOut" 
+                                                        data-elementdelay="0.1" 
+                                                        data-endelementdelay="0.1" 
+                                                        data-endspeed="700" 
+                                                        style="z-index: 15;"><img src="#" alt=""> </div>
+                                                    <!-- LAYER NR. 12 -->
+                                                    <div class="tp-caption tp-fade" 
+                                                        data-x="735" 
+                                                        data-y="305"  
+                                                        data-speed="700" 
+                                                        data-start="3700" 
+                                                        data-easing="Power3.easeInOut" 
+                                                        data-elementdelay="0.1" 
+                                                        data-endelementdelay="0.1" 
+                                                        data-endspeed="700" 
+                                                        style="z-index: 16;"><img src="#" alt=""> </div>
+                                                </li>
+                                            </ul>
+                                            <div class="tp-bannertimer"></div>
+                                        </div>
+                                        <style scoped></style>
+                                        <script type="text/javascript">
+                                            /******************************************
+                                            -	PREPARE PLACEHOLDER FOR SLIDER	-
+                                            ******************************************/
+                                            
+                                            
+                                            var setREVStartSize = function() {
+                                            var	tpopt = new Object();
+                                            tpopt.startwidth = 940;
+                                            tpopt.startheight = 600;
+                                            tpopt.container = jQuery('#rev_slider_1_1');
+                                            tpopt.fullScreen = "off";
+                                            tpopt.forceFullWidth="off";
+                                            
+                                            tpopt.container.closest(".rev_slider_wrapper").css({height:tpopt.container.height()});tpopt.width=parseInt(tpopt.container.width(),0);tpopt.height=parseInt(tpopt.container.height(),0);tpopt.bw=tpopt.width/tpopt.startwidth;tpopt.bh=tpopt.height/tpopt.startheight;if(tpopt.bh>tpopt.bw)tpopt.bh=tpopt.bw;if(tpopt.bh<tpopt.bw)tpopt.bw=tpopt.bh;if(tpopt.bw<tpopt.bh)tpopt.bh=tpopt.bw;if(tpopt.bh>1){tpopt.bw=1;tpopt.bh=1}if(tpopt.bw>1){tpopt.bw=1;tpopt.bh=1}tpopt.height=Math.round(tpopt.startheight*(tpopt.width/tpopt.startwidth));if(tpopt.height>tpopt.startheight&&tpopt.autoHeight!="on")tpopt.height=tpopt.startheight;if(tpopt.fullScreen=="on"){tpopt.height=tpopt.bw*tpopt.startheight;var cow=tpopt.container.parent().width();var coh=jQuery(window).height();if(tpopt.fullScreenOffsetContainer!=undefined){try{var offcontainers=tpopt.fullScreenOffsetContainer.split(",");jQuery.each(offcontainers,function(e,t){coh=coh-jQuery(t).outerHeight(true);if(coh<tpopt.minFullScreenHeight)coh=tpopt.minFullScreenHeight})}catch(e){}}tpopt.container.parent().height(coh);tpopt.container.height(coh);tpopt.container.closest(".rev_slider_wrapper").height(coh);tpopt.container.closest(".forcefullwidth_wrapper_tp_banner").find(".tp-fullwidth-forcer").height(coh);tpopt.container.css({height:"100%"});tpopt.height=coh;}else{tpopt.container.height(tpopt.height);tpopt.container.closest(".rev_slider_wrapper").height(tpopt.height);tpopt.container.closest(".forcefullwidth_wrapper_tp_banner").find(".tp-fullwidth-forcer").height(tpopt.height);}
+                                            };
+                                            
+                                            /* CALL PLACEHOLDER */
+                                            setREVStartSize();
+                                            
+                                            
+                                            var tpj=jQuery;
+                                            tpj.noConflict();
+                                            var revapi1;
+                                            
+                                            tpj(document).ready(function() {
+                                            
+                                            if(tpj('#rev_slider_1_1').revolution == undefined){
+                                            revslider_showDoubleJqueryError('#rev_slider_1_1');
+                                            }else{
+                                            revapi1 = tpj('#rev_slider_1_1').show().revolution(
+                                            {	
+                                            dottedOverlay:"none",
+                                            delay:9000,
+                                            startwidth:940,
+                                            startheight:600,
+                                            hideThumbs:200,
+                                            
+                                            thumbWidth:100,
+                                            thumbHeight:50,
+                                            thumbAmount:3,
+                                            
+                                            
+                                            simplifyAll:"off",
+                                            
+                                            navigationType:"bullet",
+                                            navigationArrows:"solo",
+                                            navigationStyle:"round",
+                                            
+                                            touchenabled:"on",
+                                            onHoverStop:"on",
+                                            nextSlideOnWindowFocus:"off",
+                                            
+                                            swipe_threshold: 0.7,
+                                            swipe_min_touches: 1,
+                                            drag_block_vertical: false,
+                                            
+                                            
+                                            
+                                            keyboardNavigation:"off",
+                                            
+                                            navigationHAlign:"center",
+                                            navigationVAlign:"bottom",
+                                            navigationHOffset:0,
+                                            navigationVOffset:20,
+                                            
+                                            soloArrowLeftHalign:"left",
+                                            soloArrowLeftValign:"center",
+                                            soloArrowLeftHOffset:20,
+                                            soloArrowLeftVOffset:0,
+                                            
+                                            soloArrowRightHalign:"right",
+                                            soloArrowRightValign:"center",
+                                            soloArrowRightHOffset:20,
+                                            soloArrowRightVOffset:0,
+                                            
+                                            shadow:0,
+                                            fullWidth:"on",
+                                            fullScreen:"off",
+                                            
+                                            spinner:"spinner0",
+                                            
+                                            stopLoop:"off",
+                                            stopAfterLoops:-1,
+                                            stopAtSlide:-1,
+                                            
+                                            shuffle:"off",
+                                            
+                                            autoHeight:"off",
+                                            forceFullWidth:"off",
+                                            
+                                            
+                                            
+                                            hideThumbsOnMobile:"off",
+                                            hideNavDelayOnMobile:1500,
+                                            hideBulletsOnMobile:"off",
+                                            hideArrowsOnMobile:"off",
+                                            hideThumbsUnderResolution:0,
+                                            
+                                            hideSliderAtLimit:0,
+                                            hideCaptionAtLimit:0,
+                                            hideAllCaptionAtLilmit:0,
+                                            startWithSlide:0					});
+                                            
+                                            
+                                            
+                                            }
+                                            });	/*ready*/
+                                            
+                                        </script>
+                                    </div>
+                                    <!-- END REVOLUTION SLIDER -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ewf-inline-style">
+                    <style media="all" type="text/css">.vc_custom_1427458117910{margin-top: 60px !important;}</style>
+                </div>                
+                <div class="ewf-row">
+                    <div class="ewf-span12">
+                        <div class="ewf-wrapper">
+                            <div class="headline">
+                                <i class="ifc-knight"></i>
+                                <h2>Our clients</h2>
+                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ewf-row">
+                    <div class="ewf-span12">
+                        <div class="ewf-wrapper">
+                            <ul class="client-logos">
+                                <li><img src="img/logo_example.png" alt="301" /></li>
+                                <li><img src="img/logo_example.png" alt="302" /></li>
+                                <li><img src="img/logo_example.png" alt="303" /></li>
+                                <li><img src="img/logo_example.png" alt="304" /></li>
+                                <li><img src="img/logo_example.png" alt="305" /></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="ewf-inline-style">
+                    <style media="all" type="text/css">.vc_custom_1409643677881{margin-bottom: 0px !important;background-image: url(img/1920x700dfc6.jpg?id=212) !important;}</style>
+                </div>                
+                <div class="ewf-full-width-section">
+                    <div class="ewf-row vc_custom_1409579346182">
+                        <div class="ewf-span12">
+                            <div class="ewf-wrapper">
+                                <div class="ewf-row">
+                                    <div class="ewf-span9">
+                                        <div class="ewf-wrapper">
+                                            <div class="wpb_text_column wpb_content_element ">
+                                                <div class="ewf-wrapper">
+                                                    <h3 class="text-uppercase last"><span style="color: #ffffff;">Sed ut perspiciatis unde omnis iste natus error.</span></h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ewf-span3">
+                                        <div class="ewf-wrapper">
+                                            <a href="#" class="btn  btn-large" style=""  >Contacte-nos</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ewf-inline-style">
+                    <style media="all" type="text/css">.vc_custom_1409578844320{margin-top: 40px !important;margin-bottom: 40px !important;border-top-width: 1px !important;border-bottom-width: 1px !important;padding-top: 40px !important;padding-bottom: 60px !important;background-color: #e7f8f8 !important;border-color: #e8e8e8 !important;border-style: solid !important;}</style>
+                </div>
+                <div class="ewf-inline-style">
+                    <style media="all" type="text/css">.vc_custom_1409579346182{margin-top: 40px !important;margin-bottom: 40px !important;padding-top: 60px !important;padding-bottom: 30px !important;background-image: url(wp-content/uploads/2014/08/1920x350b2b1.jpg?id=296) !important;}</style>
+                </div>
+                <div class="ewf-row vc_custom_1427458117910">
+                    <div class="ewf-span4">
+                        <div class="ewf-wrapper">
+                            <div class="icon-box-1">
+                                <i class="ifc-alarm_clock"></i>
+                                <div class="icon-box-content">
+                                    <h3 class="text-uppercase"><a href="#">Private</a></h3>
+                                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.</p>
+                                </div>
+                                <!-- end .icon-box-content -->
+                            </div>
+                            <!-- end .icon-box-1 -->
+                        </div>
+                    </div>
+                    <div class="ewf-span4">
+                        <div class="ewf-wrapper">
+                            <div class="icon-box-1">
+                                <i class="ifc-business"></i>
+                                <div class="icon-box-content">
+                                    <h3 class="text-uppercase"><a href="#">Corporate</a></h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor inci didunt ut labore.</p>
+                                </div>
+                                <!-- end .icon-box-content -->
+                            </div>
+                            <!-- end .icon-box-1 -->
+                        </div>
+                    </div>
+                    <div class="ewf-span4">
+                        <div class="ewf-wrapper">
+                            <div class="icon-box-1">
+                                <i class="ifc-cloud_storage"></i>
+                                <div class="icon-box-content">
+                                    <h3 class="text-uppercase"><a href="#">Executive</a></h3>
+                                    <p>Proin pellentesque, neque non cursus ultricies, dui eros sodales est, ut luctus enim non mauris arcu.</p>
+                                </div>
+                                <!-- end .icon-box-content -->
+                            </div>
+                            <!-- end .icon-box-1 -->
+                        </div>
+                    </div>
+                </div>
+                <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+            </div>
+            <!-- end #content -->
+            <div id="footer-top">
+                <!-- /// FOOTER TOP  //////////////////////////////////////////////////////////////////////////////////////////////////// -->
+                <div class="ewf-row">
+                    <div class="ewf-span12" id="footer-top-widget-area-1">
+                    </div>
+                    <!-- end .span12 -->
+                </div>
+                <!-- end .row -->
+                <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+            </div>
+            <!-- end #footer-top -->  
+            <div id="footer">
+                <!-- /// FOOTER     ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+                <div id="footer-middle">
+                    <!-- /// FOOTER MIDDLE  //////////////////////////////////////////////////////////////////////////////////////////////// -->
+                    <div class="ewf-row">
+                        <div class="ewf-span4" id="footer-middle-widget-area-1">
+                            <div id="text-3" class="widget widget_text">
+                                <h3 class="widget-title"><span>About us</span></h3>
+                                <div class="textwidget">
+                                    <p>Sed ut perspiciatis unde omnis iste natus error sit volup tatem accusan fames ac turpis.</p>
+                                    <p>Doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi blandit semper nibh.</p>
+                                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia con sequun tur.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ewf-span4" id="footer-middle-widget-area-2">
+                            <div id="ewf_widget_contact_info-2" class="widget ewf_widget_contact_info">
+                                <h3 class="widget-title"><span>Contact</span></h3>
+                                <ul>
+                                    <li>XXXXXX<br> XXXXXXX, XXXXXXXXX </li>
+                                    <li>XXXXXXXXXXX</li>
+                                    <li><a href="mailto:">XXXXXXXX</a></li>
+                                </ul>
+                            </div>
+                            <div id="text-4" class="widget widget_text">
+                                <div class="textwidget"><img src="img/map.png"></div>
+                            </div>
+                        </div>
+                        <div class="ewf-span4" id="footer-middle-widget-area-3">
+                            <div id="ewf_widget_social_media-2" class="widget ewf_widget_social_media">
+                                <h3 class="widget-title"><span>Social Media</span></h3>
+                                <div class="fixed"><a class="facebook-icon social-icon fa fa-facebook" href="#"></a><a class="twitter-icon social-icon fa fa-twitter" href="#"></a><a class="googleplus-icon social-icon fa fa-google-plus" href="#"></a><a class="pinterest-icon social-icon fa fa-pinterest" href="#"></a><a class="youtube-icon social-icon fa fa-youtube" href="#"></a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->    
+                </div>
+                <div id="footer-bottom">
+                    <!-- /// FOOTER BOTTOM  ///////////////////////////////////////////////////////////////////////////////////////////////////// -->
+                    <div class="ewf-row">
+                        <div class="ewf-span12" id="footer-bottom-widget-area-1">
+                            <div id="text-2" class="widget widget_text">
+                                <div class="textwidget">
+                                    <div id="footer-copyright-notice" class="ewf-row">
+                                        <div class="ewf-span4">
+                                            <img class="responsive-img" alt="" src="img/logo.png">
+                                        </div>
+                                        <div class="ewf-span8">
+                                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+                </div>
+                <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+            </div>
+            <!-- end #footer -->
+        </div>
+        <!-- end #wrap -->
+        <link rel='stylesheet' id='js_composer_front-css'  href='css/js_composer_front.css?ver=1.2.4' type='text/css' media='all' />
+        <link rel='stylesheet' id='js_composer_custom_css-css'  href='css/custom9030.css?ver=1.2.4' type='text/css' media='screen' />
+        <script type='text/javascript' src='js/jquery.form.min.js?ver=3.51.0-2014.06.20'></script>
+        <script type='text/javascript' src='js/scriptsa94e.js?ver=4.4.1'></script>
+        <script type='text/javascript' src='js/plugins5152.js?ver=1.0'></script>
+        <script type='text/javascript' src='js/vc.ewf.isogrid.pkgd.min.js'></script>
+        <script type='text/javascript' src='js/viewport/jquery.viewport5152.js?ver=1.0'></script>
+        <script type='text/javascript' src='js/easing/jquery.easing.1.35152.js?ver=1.0'></script>
+        <script type='text/javascript' src='js/simpleplaceholder/jquery.simpleplaceholder5152.js?ver=1.0'></script>
+        <script type='text/javascript' src='js/superfish/superfish5152.js?ver=1.0'></script>
+        <script type='text/javascript' src='js/superfish/hoverIntent5152.js?ver=1.0'></script>
+        <script type='text/javascript' src='js/bxslider/jquery.bxslider.min5152.js?ver=1.0'></script>
+        <script type='text/javascript' src='js/magnificpopup/jquery.magnific-popup.min5152.js?ver=1.0'></script>
+        <script type='text/javascript' src='js/itplayer/jquery.mb.YTPlayer5152.js?ver=1.0'></script>
+        <script type='text/javascript' src='js/waypoints/waypoints.min5152.js?ver=1.0'></script>
+        <script type='text/javascript' src='js/waypoints/waypoints-sticky.min5152.js?ver=1.0'></script>
+        <script type='text/javascript' src='js/easypiechart/jquery.easypiechart.min5152.js?ver=1.0'></script>
+        <script type='text/javascript' src='js/twitter/twitterfetcher5152.js?ver=1.0'></script>
+        <script type='text/javascript' src='js/jquery.parallax.min5152.js?ver=1.0'></script>
+        <script type='text/javascript' src='http://maps.google.com/maps/api/js?sensor=false&amp;ver=1.0'></script>
+        <script type='text/javascript' src='js/gmap/jquery.gmap.min5152.js?ver=1.0'></script>
+        <script type='text/javascript' src='js/scripts5152.js?ver=1.0'></script>
+        <script type='text/javascript' src='js/wp-embed.min3428.js?ver=4.5.2'></script>
+        <script type='text/javascript' src='js/js_composer_front9030.js?ver=1.2.4'></script>
+        <style type="text/css" data-type="vc-shortcodes-custom-css">.vc_custom_1409825598679{margin-bottom: 0px !important;padding-bottom: 0px !important;}</style>
+    </body>
+</html>

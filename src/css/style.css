@@ -1,0 +1,25 @@
+/*
+Theme Name: CalliTech
+Theme URI: #
+Description: A clean and highly functional WordPress theme for personal portfolios, agency and business websites.  
+Author: Bitpub
+Author URI: #
+Version: 1.0.6
+Tags: one-column, two-columns, three-columns, four-columns, left-sidebar, right-sidebar, responsive-layout, custom-background, custom-colors, custom-header, custom-menu, featured-images, flexible-header, full-width-template, sticky-post, theme-options, threaded-comments, translation-ready
+
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/ 
+
+/* Theme css files */
+
+@import url('base.css');
+@import url('grid.css');
+@import url('elements.css');
+@import url('layout.css');
+
+/* Plugin css files */
+
+@import url('../js/bxslider/jquery.bxslider.css');
+@import url('../js/magnificpopup/magnific-popup.css');
+

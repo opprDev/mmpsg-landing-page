@@ -14,7 +14,7 @@ Project Link: http://mmpsg-consulting.pt/
 
 This project was commissioned in order to develop a Landing Page an innovative consulting service related charges.
 
-Estimated Hours: 30h
+Estimated Hours: 60h
 
 Actual Hours: ??h
 

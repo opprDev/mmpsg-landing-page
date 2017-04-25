@@ -1,4 +1,4 @@
-Copyright © 2016 CalliTech
+Copyright © 2016 oppr
 
 # License Summary
 
